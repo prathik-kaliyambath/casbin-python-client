@@ -17,12 +17,13 @@ import grpc
 
 import casbin_pb2, casbin_pb2_grpc
 
-ADDRESS = "localhost:50051"
+from client import Client
+
 
 if __name__ == '__main__':
     logging.info("Trying to connect to casbin server.")
-    channel = grpc.insecure_channel(ADDRESS)
-    stub = casbin_pb2_grpc.CasbinStub(channel)
+
+    stub = Client().NewClient()
 
     # Adapter can be made using an adapter request, with custom csv file or db
     # Server defaults will be used, if the request is empty
